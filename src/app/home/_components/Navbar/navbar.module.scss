@@ -31,6 +31,14 @@
         font-weight: 600;
         font-size: $size-400;
         cursor: pointer;
+        @include flex-container(row, center, center);
+        gap: 0.8rem;
+
+        &>div:nth-child(1) {
+            &>img {
+                border-radius: 100%;
+            }
+        }
     }
 
     @include desktop {

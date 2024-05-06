@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { getAuth } from 'firebase/auth';
 import {GoogleAuthProvider, signInWithPopup} from 'firebase/auth';
+import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import { useRouter } from 'next/navigation';
 
 import {app} from '@/firebase/firebase.config';
@@ -26,8 +27,29 @@ import messageimg from "../../../public/assets/img/Message.png";
 const SignUp = () => {
 
     const [user, setUser] = useState<any>(null);
+    const [withEmail, setWithEmail] = useState<boolean>(false);
 
+    const [email, setEmail] = useState<string>("");
+    const [password, setPassword] = useState<string>("");
+    
     const router = useRouter();
+    const auth = getAuth(app)
+    const [createUserWithEmailAndPasssword] = useCreateUserWithEmailAndPassword(auth)
+
+    const handleSignUpEmail = async() => {
+        try {
+            const res = await createUserWithEmailAndPasssword(email, password);
+
+            if(res) {
+                router.push("/home");
+            }
+            //resets the email and password fields
+            setEmail("");
+            setPassword("");
+        } catch (error : any) {
+            console.log("An error occurred", error.message);
+        }
+    }
 
     useEffect(() => {
         const auth = getAuth();
@@ -38,7 +60,7 @@ const SignUp = () => {
                 setUser(null);
             }
         })
-
+        
         console.log(user)
 
         return () => stchangefunc();
@@ -86,6 +108,31 @@ const SignUp = () => {
 
             <div className={styles.signup__inner__container}>
 
+                {
+                    withEmail ? (
+                        <div className={styles.signup__email__container}>
+                            <div>
+                                <p>Sign up with Email</p>
+                            </div>
+                            <div>
+                                <div>
+                                    <input type="email" placeholder="Email" value={email} onChange={(e) => {
+                                        setEmail(e.target.value);
+                                    }} />
+                                </div>
+                                <div>
+                                    <input type="password" placeholder="Password" value={password} onChange={(e) => {
+                                        setPassword(e.target.value);
+                                    }} />
+                                </div>
+                            </div>
+                            <div>
+                                <button onClick={handleSignUpEmail}>
+                                    <p>Sign up</p>
+                                </button>
+                            </div>
+                        </div>
+                    ) : (
                 <div>
                     <div>
                         <div>
@@ -101,7 +148,7 @@ const SignUp = () => {
                             <p><Image src={googleimg} alt='google image' /></p>
                             <p>Sign up with Google</p>
                         </button>
-                        <button>
+                        <button onClick={() => setWithEmail(true)}>
                             <p><Image src={messageimg} alt='message image' /></p>
                             <p>Sign up with Email</p>
                         </button>
@@ -111,6 +158,8 @@ const SignUp = () => {
                         <p>Already a user? <span>Log in</span></p>
                     </div>
                 </div>
+                    )
+                }
 
             </div>
         </div>

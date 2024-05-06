@@ -113,6 +113,52 @@
             // width: 60%;
             height: 100%;
 
+
+            .signup__email__container {
+
+                &>div:nth-child(1) {
+                    font-weight: 600;
+                    font-size: $size-500;
+                }
+
+                &>div:nth-child(2) {
+                    font-weight: 400;
+                    font-size: $size-400;
+
+                    &>div:nth-child(n) {
+                        width: 100%;
+
+                        &>input {
+                            width: 100%;
+                            background-color: $clr-background-primary;
+                            outline: none;
+                            border: 1px solid $clr-gray;
+                            padding: 0.8rem;
+                            border-radius: 0.5rem;
+                            color: $clr-text-neutral;
+                        }
+                    }
+                }
+
+                &>div:last-child {
+                    width: 100%;
+                    @include flex-container(row, center, center);
+
+                    &>button {
+                        background-color: $clr-background-primary;
+                        outline: none;
+                        border: 1px solid $clr-gray;
+                        padding: 0.8rem;
+                        border-radius: 0.5rem;
+                        color: $clr-text-neutral;
+                        width: 100%;
+                        font-weight: 600;
+                        cursor: pointer;
+                    }
+                }
+            }
+
+
             &>div:first-child {
                 @include flex-container(column, space-between, center);
                 width: 100%;
