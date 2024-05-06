@@ -38,27 +38,29 @@ const SignUp = () => {
             <div className={styles.signup__inner__container}>
 
                 <div>
-                <div>
                     <div>
-                        <p>Sign up</p>
+                        <div>
+                            <p>Sign up</p>
+                        </div>
+                        <div>
+                            <p>Choose a signup method</p>
+                        </div>
                     </div>
+                    
                     <div>
-                        <p>Choose a signup method</p>
+                        <button>
+                            <p><Image src={googleimg} alt='google image' /></p>
+                            <p>Sign up with Google</p>
+                        </button>
+                        <button>
+                            <p><Image src={messageimg} alt='message image' /></p>
+                            <p>Sign up with Email</p>
+                        </button>
                     </div>
-                </div>
-                <div>
-                    <button>
-                        <p><Image src={googleimg} alt='google image' /></p>
-                        <p>Sign up with Google</p>
-                    </button>
-                    <button>
-                        <p><Image src={messageimg} alt='message image' /></p>
-                        <p>Sign up with Email</p>
-                    </button>
-                </div>
-                <div>
-                    <p>Already a user? <span>Log in</span></p>
-                </div>
+                    
+                    <div>
+                        <p>Already a user? <span>Log in</span></p>
+                    </div>
                 </div>
 
             </div>
