@@ -51,4 +51,15 @@
         color: inherit;
         display: none;
     }
+
+    @include large {
+
+        &>div:first-child {
+            @include flex-container(row, center, center);
+        }
+
+        &>button {
+            display: block;
+        }
+    }
 }

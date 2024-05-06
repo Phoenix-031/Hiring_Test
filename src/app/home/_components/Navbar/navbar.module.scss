@@ -31,4 +31,8 @@
         font-weight: 600;
         font-size: $size-400;
     }
+
+    @include desktop {
+        padding: 1rem 4rem;
+    }
 }
