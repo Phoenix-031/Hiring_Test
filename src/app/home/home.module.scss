@@ -28,7 +28,11 @@
         &>div:last-child {
             @include flex-container(row, center, center);
             gap: 0.8rem;
+            display: none;
 
+            @include desktop {
+                display: flex;
+            }
         }
     }
 
