@@ -1,0 +1,54 @@
+@import '../../../../styles/config';
+@import '../../../../styles/utilities/breakpoints';
+
+@mixin flex-container($direction: row, $justify: center, $align: center) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+.card__main__container {
+    width: 30rem;
+    border-radius: 0.8rem;
+    border: 1px solid $clr-gray;
+    padding: 1rem;
+    @include flex-container(column, space-between, center);
+    gap: 1rem;
+    color: $clr-text-neutral;
+    height: 16rem;
+    overflow: hidden;
+
+    &>div:first-child {
+        // @include flex-container(row, center, center);
+        @include flex-container(column, flex-start, center);
+
+        &>div:nth-child(1) {
+            flex: 1;
+        }
+
+        &>div:nth-child(2) {
+            flex: 2;
+
+            &>div:nth-child(1) {
+                font-weight: 600;
+                font-size: 0.8rem;
+            }
+
+            &>div:nth-child(2) {
+                font-weight: 400;
+                font-size: 0.8rem;
+            }
+        }
+    }
+
+    &>button {
+        width: 100%;
+        border: 1px solid $clr-gray;
+        border-radius: 0.8rem;
+        background-color: $clr-background-primary;
+        padding: 1rem;
+        color: inherit;
+        display: none;
+    }
+}

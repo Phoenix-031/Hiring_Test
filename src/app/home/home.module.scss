@@ -1,0 +1,42 @@
+@import '../../styles/config';
+@import '../../styles//utilities/breakpoints';
+
+@mixin flex-container($direction: row, $justify: center, $align: center) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+.home__main__container {
+    // padding: 1.5rem 4rem;
+    padding: 1rem;
+    background-color: $clr-background-primary;
+    border-top: 1px solid $clr-gray;
+    height: calc(100vh - 5rem);
+
+    &>div:first-child {
+        color: $clr-text-neutral;
+        @include flex-container(row, space-between, center);
+        padding: 1rem 0;
+
+        &>div:first-child {
+            font-size: $size-500;
+            font-weight: 600;
+        }
+
+        &>div:last-child {
+            @include flex-container(row, center, center);
+            gap: 0.8rem;
+
+        }
+    }
+
+    &>div:last-child {
+        overflow-x: scroll;
+        margin-top: 2rem;
+        @include flex-container(row, flex-start, center);
+        // gap: 2rem;
+        gap: 0.8rem;
+    }
+}
