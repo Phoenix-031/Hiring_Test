@@ -59,6 +59,17 @@ const SignUp = () => {
     <div className={styles.main__container}>
         <div className={styles.image__container}>
             <Image src={authimg} alt="logo" className={styles.auth__image} />
+            <div>
+                <div>
+                        <Image src={loimg} alt="logo" className={styles.lo__image} />
+                        <span>
+                            <Image src={goimg} alt="logo" className={styles.go__image} />
+                        </span>
+                </div>
+                <div>
+                    <p>Journey to a trillion miles starts from here!!</p>
+                </div>
+            </div>
         </div>
         <div className={styles.signup__container}>
             <div>

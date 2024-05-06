@@ -36,11 +36,13 @@ const Home = () => {
       </div>
 
       <div>
+        <div>
         {
           cardData.map((cardinfo : Icardinfo, index :number) => {
             return <Card key={index} cardinfo={cardinfo} />
           })
         }
+        </div>
       </div>
     </div>
   )

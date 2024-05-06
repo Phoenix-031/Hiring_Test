@@ -17,5 +17,10 @@ export const cardData = [
         title: "Artificial Intelligence",
         description: "Covers fundamentals, design, construction, operation and programming of robots.",
         image: chip,
+    },
+    {
+        title: "Artificial Intelligence",
+        description: "Covers fundamentals, design, construction, operation and programming of robots.",
+        image: chip,
     }
 ]

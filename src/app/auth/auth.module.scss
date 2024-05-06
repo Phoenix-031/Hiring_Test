@@ -22,9 +22,49 @@
         height: 100vh;
         overflow-y: hidden;
         flex: 1;
+        position: relative;
+        width: 100%;
 
         .auth__image {
             height: 100%;
+            z-index: 100;
+            object-fit: cover;
+            object-position: 0 0;
+        }
+
+        &>div:last-child {
+            position: absolute;
+            top: 75%;
+            z-index: 8000;
+            width: 100%;
+
+            @include flex-container(column, center, center);
+            gap: 1rem;
+
+            &>div:first-child {
+                @include flex-container(row, center, center);
+                gap: 0.8rem;
+
+                &>span {
+                    background-color: $clr-secondary;
+                    padding: 0.8rem;
+                    border-radius: 0.5rem;
+                }
+            }
+
+            &>div:nth-child(2) {
+                color: $clr-text-neutral;
+                font-size: $size-400;
+
+                @include sm {
+                    font-size: $size-500;
+                }
+
+                @include mobile {
+                    font-size: $size-600;
+                }
+            }
+
         }
     }
 
@@ -125,6 +165,53 @@
                     }
                 }
             }
+
+            @include mobile {
+                &>div:first-child {
+                    &>div:first-child {
+                        &>div:nth-child(1) {
+                            font-size: $size-700;
+                        }
+
+                        &>div:nth-child(2) {
+                            font-weight: 400;
+                            font-size: $size-500;
+                        }
+                    }
+
+                    &>div:nth-child(2) {
+                        font-size: $size-500;
+                    }
+
+                    &>div:nth-child(3) {
+                        font-size: $size-500;
+                    }
+                }
+            }
+
+            @include desktop {
+                &>div:first-child {
+                    &>div:first-child {
+                        &>div:nth-child(1) {
+                            font-size: $size-500;
+                        }
+
+                        &>div:nth-child(2) {
+                            font-weight: 400;
+                            font-size: $size-400;
+                        }
+                    }
+
+                    &>div:nth-child(2) {
+                        font-size: $size-400;
+                    }
+
+                    &>div:nth-child(3) {
+                        font-size: $size-400;
+                    }
+                }
+            }
+
         }
     }
 
@@ -147,6 +234,12 @@
     @include desktop {
         @include flex-container(row, center, center);
 
+        .image__container {
+            &>div:last-child {
+                display: none;
+            }
+        }
+
         .signup__container {
             padding: $auth-padding;
 
@@ -159,12 +252,20 @@
                 border: 1px solid $clr-gray;
                 border-radius: 2rem;
                 width: 100%;
-                height: 60%;
+                height: 50%;
             }
         }
     }
 
     @include large {
+        .signup__container {
+            .signup__inner__container {
+                width: 80%
+            }
+        }
+    }
+
+    @include xlarge {
         .signup__container {
             .signup__inner__container {
                 width: 60%
