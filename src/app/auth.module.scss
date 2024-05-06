@@ -1,5 +1,5 @@
-@import '../../styles/config';
-@import '../../styles/utilities/breakpoints';
+@import '../styles/config';
+@import '../styles/utilities/breakpoints';
 
 @mixin flex-container($direction: row, $justify: center, $align: center) {
     display: flex;
