@@ -3,6 +3,13 @@
 import React from 'react';
 import Image from 'next/image';
 
+import { useState, useEffect } from 'react';
+import { getAuth } from 'firebase/auth';
+import {GoogleAuthProvider, signInWithPopup} from 'firebase/auth';
+import { useRouter } from 'next/navigation';
+
+import {app} from '@/firebase/firebase.config';
+
 // style imports
 
 import styles from '@/app/auth/auth.module.scss';
@@ -17,6 +24,37 @@ import googleimg from "../../../public/assets/img/google.png";
 import messageimg from "../../../public/assets/img/Message.png";
 
 const SignUp = () => {
+
+    const [user, setUser] = useState<any>(null);
+
+    const router = useRouter();
+
+    useEffect(() => {
+        const auth = getAuth();
+        const stchangefunc = auth.onAuthStateChanged((user) => {
+            if(user) {
+                setUser(user);
+            }else {
+                setUser(null);
+            }
+        })
+
+        console.log(user)
+
+        return () => stchangefunc();
+    })
+
+    const signInWithGoogle = async () => {
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+        try {
+            await signInWithPopup(auth, provider);
+            router.push("/home");
+        } catch (error : any) {
+            console.log("an error occurred", error.message);
+        }
+    }
+    
   return (
     <div className={styles.main__container}>
         <div className={styles.image__container}>
@@ -48,7 +86,7 @@ const SignUp = () => {
                     </div>
                     
                     <div>
-                        <button>
+                        <button onClick={signInWithGoogle}>
                             <p><Image src={googleimg} alt='google image' /></p>
                             <p>Sign up with Google</p>
                         </button>
